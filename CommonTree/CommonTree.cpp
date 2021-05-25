@@ -56,6 +56,8 @@ CommonTree::CommonTree(string s)
 
 	for (; i < s.length(); )
 	{
+		if (tmp == nullptr)
+			throw "Incorrect string";
 		if (s[i] == '(')
 		{
 			i++;
@@ -74,6 +76,10 @@ CommonTree::CommonTree(string s)
 		{
 			i++;
 			tmp = tmp->parent;
+		}
+		else
+		{
+			throw "Incorrect symbol";
 		}
 	}
 }

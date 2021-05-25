@@ -6,11 +6,20 @@ using namespace std;
 
 int main()
 {
-	cout << "Input string: ";
-	string treeString;
-	getline(cin, treeString);
+	try
+	{
+		cout << "Input string: ";
+		string treeString;
+		getline(cin, treeString);
 
-	CommonTree tree(treeString);
+		CommonTree tree(treeString);
+	}
+	catch (const char* msg)
+	{
+		cout << msg << endl;
+		system("pause");
+		return -1;
+	}
 
 	system("pause");
 	return 0;
