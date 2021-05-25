@@ -50,6 +50,9 @@ CommonTree::CommonTree(string s)
 	tmp = root;
 
 	// Открывающая скобка - что это значит? Что сейчас пойдут дети. Пойдут они толпой.
+	// О чем нам говорит запятая?
+	// -- Что у нас появился брат!
+	// Какие радостные у нас события в жизни!
 
 	for (; i < s.length(); )
 	{
@@ -59,6 +62,18 @@ CommonTree::CommonTree(string s)
 			number = GetNumber(s, i);
 			tmp->first_son = new Node(number, tmp);
 			tmp = tmp->first_son;
+		}
+		else if (s[i] == ',')
+		{
+			i++;
+			number = GetNumber(s, i);
+			tmp->brother = new Node(number, tmp->parent);
+			tmp = tmp->brother;
+		}
+		else if (s[i] == ')')
+		{
+			i++;
+			tmp = tmp->parent;
 		}
 	}
 }
