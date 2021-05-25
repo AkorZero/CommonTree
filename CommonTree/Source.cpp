@@ -13,6 +13,9 @@ int main()
 		getline(cin, treeString);
 
 		CommonTree tree(treeString);
+
+		cout << tree.CommonTreeToString();
+		cout << endl << tree.height();
 	}
 	catch (const char* msg)
 	{

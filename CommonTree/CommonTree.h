@@ -18,10 +18,12 @@ class CommonTree
 
 	Node* root;
 	int GetNumber(string s, int& i);
+	void treeToString(Node* tmp, string& tree);
 public:
 	CommonTree();
 	CommonTree(string s);
 	string CommonTreeToString();
+	int height(Node* tmp = nullptr);
 	~CommonTree();
 };
 

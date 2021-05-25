@@ -1,5 +1,8 @@
 #include "CommonTree.h"
 
+int cnt = 0;
+int max = 0;
+
 CommonTree::Node::Node(int key, CommonTree::Node* p)
 {
 	info = key;
@@ -34,6 +37,53 @@ int CommonTree::GetNumber(string s, int & i)
 	return number;
 }
 
+void CommonTree::treeToString(Node * tmp, string & tree)
+{
+	if (tmp == nullptr)
+	{
+		return;
+	}
+
+	tree += to_string(tmp->info);
+
+	if (tmp->first_son != nullptr)
+	{
+		tree += "(";
+		treeToString(tmp->first_son, tree);
+		tree += ")";
+	}
+
+	if (tmp->brother != nullptr)
+	{
+		tree += ",";
+		treeToString(tmp->brother, tree);
+	}
+}
+
+//int CommonTree::height(Node* tmp)
+//{
+//	if (tmp == nullptr)
+//	{
+//		cnt = 0, max = 0;
+//		tmp = this->root;
+//	}
+//	if (tmp->first_son != nullptr)
+//	{
+//		cnt++;
+//		height(tmp->first_son);
+//	}
+//	else if (tmp->brother != nullptr)
+//	{
+//		height(tmp->brother);
+//	}
+//	else
+//	{
+//		if (cnt > max)
+//			max = cnt;
+//	}
+//	return max;
+//}
+
 CommonTree::CommonTree()
 {
 	root = nullptr;
@@ -58,6 +108,7 @@ CommonTree::CommonTree(string s)
 	{
 		if (tmp == nullptr)
 			throw "Incorrect string";
+
 		if (s[i] == '(')
 		{
 			i++;
@@ -76,6 +127,9 @@ CommonTree::CommonTree(string s)
 		{
 			i++;
 			tmp = tmp->parent;
+
+			if (tmp == root && i < s.length())
+				throw "Incorrect string";
 		}
 		else
 		{
@@ -86,7 +140,9 @@ CommonTree::CommonTree(string s)
 
 string CommonTree::CommonTreeToString()
 {
-	return string();
+	string tree;
+	treeToString(root, tree);
+	return tree;
 }
 
 
